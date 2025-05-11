@@ -9,4 +9,8 @@ def start(message):
     markup.add("استارت")
     bot.send_message(message.chat.id, " ", reply_markup=markup)
 
+@bot.message_handler(func=lambda m: m.text == "استارت")
+def handle_start(message):
+    bot.send_message(message.chat.id, "🎮 وارد بازی شدید!")  # این پیام رو بعداً حذف می‌کنیم
+
 bot.polling()
