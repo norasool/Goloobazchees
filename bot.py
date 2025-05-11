@@ -1,16 +1,25 @@
+import os
+from dotenv import load_dotenv
 import telebot
 from telebot.types import ReplyKeyboardMarkup
 
-bot = telebot.TeleBot("7993730901:AAHXLQgjMwCKf2Ai-xbZjwuBn03paEMyzcE")
+# بارگذاری توکن از فایل .env
+load_dotenv()
+TOKEN = os.getenv("TOKEN")  # توکن از محیطی ایمن خوانده می‌شود
+bot = telebot.TeleBot(TOKEN)
 
+# دستور /start
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add("استارت")
+    markup.add("♟️ شروع بازی")
     bot.send_message(message.chat.id, " ", reply_markup=markup)
 
-@bot.message_handler(func=lambda m: m.text == "استارت")
+# پردازش دکمه شروع بازی
+@bot.message_handler(func=lambda m: m.text == "♟️ شروع بازی")
 def handle_start(message):
     bot.send_message(message.chat.id, " ")  # پیام خالی
 
-bot.polling()
+# اجرای ربات
+if __name__ == "__main__":
+    bot.polling()
