@@ -11,6 +11,6 @@ def start(message):
 
 @bot.message_handler(func=lambda m: m.text == "استارت")
 def handle_start(message):
-    bot.send_message(message.chat.id, "🎮 وارد بازی شدید!")  # این پیام رو بعداً حذف می‌کنیم
+    bot.send_message(message.chat.id, " ")  # پیام خالی
 
 bot.polling()
